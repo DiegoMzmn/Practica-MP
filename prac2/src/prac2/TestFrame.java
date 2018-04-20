@@ -4,50 +4,32 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Insets;
-import javax.swing.JOptionPane;
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 public class TestFrame extends javax.swing.JFrame implements Border{
     private JPanel[][] matriz;
-    private ActualizaTablero at;
-    
     
     public TestFrame(){
         initComponents(); 
-        
-        int opc= JOptionPane.showConfirmDialog(null,"¿Quiere iniciar el juego?","INICIO",JOptionPane.YES_NO_OPTION);
-        
-        if (opc==0){
        
-            matriz=new JPanel[60][60];
-            for (int i=0;i<60;i++){
-                for (int j=0;j<60;j++){
-                    JPanel p1=new JPanel();
-                    p1.setBackground(Color.white);
-                    jPanel1.add(p1);
-                    matriz[i][j]=p1;
-                }
+        matriz=new JPanel[60][60];
+        for (int i=0;i<60;i++){
+            for (int j=0;j<60;j++){
+                JPanel p1=new JPanel();
+                p1.setBackground(Color.white);
+                jPanel1.add(p1);
+                matriz[i][j]=p1;
             }
-
-            jPanel1.setBackground(Color.LIGHT_GRAY); 
-            at = new ActualizaTablero(matriz);           
-            at.start(); 
         }
-        else{
-            System.exit(0);
-        }       
-    }
-
-    public JPanel[][] getMatriz() {
-        return matriz;
+        jPanel1.setBackground(Color.LIGHT_GRAY);   
+        
+        
     }
     
-    public void crearHebra(){
-        ActualizaTablero at= new ActualizaTablero(matriz);
-        at.start();
-    }
-
+    
+    
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -93,12 +75,12 @@ public class TestFrame extends javax.swing.JFrame implements Border{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
         );
 
         pack();
@@ -143,9 +125,10 @@ public class TestFrame extends javax.swing.JFrame implements Border{
     }//GEN-LAST:event_formKeyPressed
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-   
+        at = new Controlador(matriz);
+        at.start();
     }//GEN-LAST:event_formMouseClicked
-   
+
   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -199,5 +182,24 @@ public class TestFrame extends javax.swing.JFrame implements Border{
     public boolean isBorderOpaque() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
+    
+    public void cambiarColor (int i, int j, Color color){
+       matriz[i][j].setBackground(color);
+    }
+    
+    /*public void pintarComida(){
+        int x=comida.getComida().getX();
+        int y=comida.getComida().getY();
+        matriz[x][y].setBackground(Color.blue);
+        Border blackline = BorderFactory.createLineBorder(Color.black,2,false);
+        matriz[x][y].setBorder(blackline);
+    }*/
+    
+    /*public void pintar(){
+        Border white = BorderFactory.createLineBorder(Color.white,1,false); 
+        Punto p=this.serpiente.getLista().getFirst();
+            this.matriz[p.getX()][p.getY()].setBackground(Color.red);
+            this.matriz[p.getX()][p.getY()].setBorder(white);
+    }*/
 }

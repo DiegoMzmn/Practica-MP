@@ -11,8 +11,6 @@ public class Serpiente {
     
     private LinkedList<Punto> lista;
     
-    
-    
     public Serpiente(){
         this.lista = new LinkedList<Punto>();
         this.lista.add(new Punto(30,30));
@@ -50,5 +48,9 @@ public class Serpiente {
     
     public Punto removeLast(){
         return this.lista.removeLast();
+    }
+    
+    public void removeAll(){
+        this.lista.clear();
     }
 }
